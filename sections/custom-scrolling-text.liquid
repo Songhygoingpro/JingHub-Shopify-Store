@@ -1,0 +1,178 @@
+<div class="custom-scrolling-text" id="root">
+  <div class="custom-scrolling-text__inner marquee">
+    <ul class="custom-scrolling-text__items marquee-content">
+      {% for block in section.blocks %}
+        <li class="custom-scrolling-text__item" style="color: {{ block.settings.color }}">
+          <div class="custom-scrolling-text__item__content">
+            {{ block.settings.icon }}
+            <p>{{ block.settings.text }}</p>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% style %}
+  .custom-scrolling-text {
+    overflow-x:hidden;
+  }
+
+  .custom-scrolling-text__items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .custom-scrolling-text__items svg path {
+    stroke: {% for block in section.blocks %}{{ block.settings.color }}{% endfor %};
+  }
+
+  .custom-scrolling-text__items svg {
+    width: 32px;
+    height: 32px;
+  }
+
+    #root {
+    --marquee-width: 200vw;
+    --marquee-height: 10vh;
+    --marquee-elements-displayed: 3.5;
+    --marquee-element-width: calc(
+      var(--marquee-width) / var(--marquee-elements-displayed)
+    );
+    --marquee-animation-duration: calc(var(--marquee-elements) * 5s);
+  }
+
+  .marquee {
+    width: var(--marquee-width);
+    height: var(--marquee-height);
+    background-color: {{section.settings.bg-color}};
+    color: #eee;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .marquee:before,
+  .marquee:after {
+    position: absolute;
+    top: 0;
+    width: 10rem;
+    height: 100%;
+    content: "";
+    z-index: 1;
+  }
+
+  .marquee-content {
+    list-style: none;
+    height: 100%;
+    display: flex;
+    animation: scrolling var(--marquee-animation-duration) linear infinite;
+    width: auto;
+  }
+
+  @keyframes scrolling {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(
+        calc(-1 * var(--marquee-element-width) * var(--marquee-elements))
+      );
+    }
+  }
+  .marquee-content li {
+    display: flex;
+    flex-shrink: 0;
+    width: var(--marquee-element-width);
+    font-size: 40px;
+    white-space: nowrap;
+    line-height: 0;
+  }
+
+  .custom-scrolling-text__item__content {
+    max-height: fit-content !important;
+    line-height: 0;
+    display:flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+
+  @media (max-width: 600px) {
+    #root {
+      --marquee-width: 150vw;
+      --marquee-height: 10vh;
+      --marquee-elements-displayed: 1.5;
+    }
+
+    .marquee-content li {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .marquee:before,
+    .marquee:after {
+      width: 5rem;
+    }
+  }
+  @media screen and (min-width: 600px) and (max-width: 1024px) {
+    #root {
+      --marquee-width: 170vw;
+      --marquee-height: 10vh;
+      --marquee-elements-displayed: 1.7;
+    }
+  }
+
+  @media (max-width: 330px) {
+    #root {
+      --marquee-width: 230vw;
+      --marquee-height: 10vh;
+      --marquee-elements-displayed: 1.5;
+    }
+  }
+{% endstyle %}
+
+<script>
+      const root = document.getElementById("root");
+  const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
+  const marqueeContent = document.querySelector("ul.marquee-content");
+
+  root.style.setProperty("--marquee-elements", marqueeContent.children.length);
+
+  for(let i=0; i<marqueeElementsDisplayed; i++) {
+    marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Scrolling Text",
+  "tag" : "section",
+  "settings": [{
+    "type": "color",
+    "id": "bg-color",
+    "label": "Background Color",
+    "default": "#111"
+  }],
+  "blocks": [{
+    "name": "Scrolling Content",
+    "type": "text",
+    "settings": [
+      {"type": "color",
+      "id": "color",
+      "label": "Text & Icon color"},
+      {
+    "type": "text",
+    "id": "text",
+    "label": "Scrolling Text"
+  },{
+    "type": "text",
+    "id": "icon",
+    "label": "Svg Code"
+  }]
+  }],
+  "presets": [{
+    "name": "Custom Scrolling Text"
+  }]
+}
+{% endschema %}

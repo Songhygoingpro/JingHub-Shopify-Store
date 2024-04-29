@@ -1,0 +1,245 @@
+<div class="custom-collection-list">
+  <div class="custom-collection-list__inner">
+    <div class="custom-collection-list__title-wrapper">
+      <h1 class="custom-collection-list__title " data-aos="fade-up">Collection List</h1>
+    </div>
+    <ul class="custom-collection-list__items ">
+      {% for block in section.blocks %}
+        <li
+          class="custom-collection-list__item "
+          data-aos="fade-up"
+        >
+          <div class="custom-collection-list__item-overlay">
+            <h2 class="custom-collection-list__item-title">{{ block.settings.title }}</h2>
+            <button class="custom-collection-list__item-button">Shop Now</button>
+          </div>
+          <img
+            src="{% if block.settings.url-image != blank %}{{ block.settings.url-image}}{% else %}{{ block.settings.image | image_url: width: 800 }}{% endif %}"
+            class="custom-collection-list__image"
+          >
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% style %}
+              @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+                .custom-collection-list {
+                  display: flex;
+                  justify-content: center;
+                  height: 100%;
+                }
+
+        .custom-collection-list__title {
+          margin: 0 0 30px;
+        }
+
+        .custom-collection-list__title-wrapper {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 2.5rem;
+        }
+
+                 .custom-collection-list__inner {
+                  width: 1200px;
+                  height: inherit;
+                  padding: 0 5rem;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  padding-top: {{section.settings.paddin-top}}px;
+                  padding-bottom: {{section.settings.padding-bottom}}px;
+                  background: {{section.settings.bg-color}};
+                }
+
+                .custom-collection-list__items {
+                  list-style: none;
+                  margin: 0;
+                  padding-inline-start: 0;
+                  display: grid;
+                  grid-template-columns: repeat({{ section.settings.num-col }}, minmax(0, 1fr));
+                  gap: 8px;
+                }
+
+                .custom-collection-list__item {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+              }
+
+              .custom-collection-list__image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 500ms ease;
+              }
+
+              .custom-collection-list__item-overlay {
+                position: absolute;
+                bottom: -70px;
+                left: 0;
+                width: 100%;
+                padding: 20px;
+                transition: bottom 500ms ease;
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                z-index: 1;
+              }
+
+              .custom-collection-list__item-title,
+              .custom-collection-list__item-button {
+                color: white;
+                margin: 0;
+                  position: relative;
+              z-index: 2;
+              }
+
+              .custom-collection-list__item-title {
+                  font-family: "Source Serif 4", serif;
+              }
+
+              .custom-collection-list__item-button {
+                display: block;
+                width: 10rem;
+                height: 5rem;
+                background-color: #121212;
+                border: none;
+                padding: 10px;
+                cursor: pointer;
+                border-radius: 4rem;
+                font-size: 12px;
+                transition: all ease 0.3s;
+              }
+
+    @media screen and (min-width: 768px){
+
+              .custom-collection-list__item-button:hover {
+                background: #00000000;
+                color: black;
+                border: 1px solid black;
+              }
+
+              .custom-collection-list__item:hover .custom-collection-list__item-overlay {
+                bottom: 0;
+              }
+
+              .custom-collection-list__item:hover .custom-collection-list__image {
+                transform: scale(1.03);
+              }
+              .custom-collection-list__item:hover .custom-collection-list__item-overlay {
+              opacity: 1;
+            }
+  }
+
+          @media screen and (max-width: 749px) {
+            .custom-collection-list__inner {
+              padding-right: 1rem;
+              padding-left: 1rem;
+            }
+
+            .custom-collection-list__items {
+                  display: grid;
+                   grid-template-columns: repeat(1, minmax(0, 1fr));}
+
+            .custom-collection-list__items {
+              gap: 4px;
+            }
+
+            .custom-collection-list__item-overlay {
+                position: absolute;
+                bottom: 0px;
+                left: 0;
+                width: 100%;
+                padding: 20px;
+                transition: bottom 500ms ease;
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                z-index: 1;
+              }
+          }
+
+          @media screen and (min-width: 749px) and (max-width: 990px) {
+            .custom-collection-list__inner {
+              padding-left:5rem;
+              padding-right: 5rem;
+            }
+
+      .custom-collection-list__items {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));}
+          }
+{% endstyle %}
+
+<script>
+  let elementss = document.querySelectorAll('.custom-collection-list__item');
+
+  elementss.forEach(function(element, index) {
+    let delay = index * 100; // Calculate delay based on index
+    element.setAttribute('data-aos-delay', delay); // Set the data-aos-delay attribute
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Collection List",
+  "tag": "section",
+  "settings": [{
+    "type": "color",
+    "id": "bg-color",
+    "label": "Background Color"
+  },{
+    "type": "range",
+    "id": "paddin-top",
+    "label": "Padding Top",
+     "min": 0,
+  "max": 100,
+  "step": 4,
+  "unit": "px",
+    "default": 16
+  },{
+    "type": "range",
+    "id": "padding-bottom",
+    "label": "Padding Bottom",
+     "min": 0,
+  "max": 100,
+  "step": 4,
+  "unit": "px",
+    "default": 16
+  },{
+    "type": "range",
+    "id": "num-col",
+    "label": "Number of columns on desktop",
+    "min": 1,
+    "max": 5,
+    "step": 1,
+    "default": 3
+  }],
+  "presets": [{"name": "Collection List"}],
+  "blocks": [{
+    "name": "collection item",
+    "type": "collection",
+    "settings": [{
+      "type": "text",
+      "id": "title",
+      "label": "Collection Title"
+    },{
+      "type": "collection",
+      "id": "collection-item",
+      "label": "Collection Item"
+    },{
+      "type": "text",
+      "id": "url-image",
+      "label": "Url Image"
+    },{
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }]
+  }]
+
+}
+{% endschema %}

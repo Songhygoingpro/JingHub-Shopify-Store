@@ -1,0 +1,137 @@
+{% assign background-image = section.settings['bg-image'] %}
+
+<div class="custom-rich-text ">
+  <div class="custom-rich-text__inner ">
+    <div class="custom-rich-textwrapper">
+      <h1 class="custom-rich-text__title" data-aos="fade-up">
+        {{ section.settings['brand-name'] }}
+      </h1>
+      <div class="custom-rich-text__contentwrapper" data-aos="fade-up">
+        <div class="custom-rich-text__content">{{ section.settings['richtext-content'] }}</div>
+      </div>
+      <a href="#" class="custom-rich-text__button " data-aos="fade-up"><button type="button">About us</button></a>
+    </div>
+  </div>
+</div>
+
+{% style %}
+    @import url('https://fonts.googleapis.com/css2?family=Joti+One&display=swap');
+
+      .custom-rich-text  {
+        display: flex;
+        justify-content: center;
+        color: black;
+      }
+
+        .custom-rich-text__inner {
+          width: 100%;
+          height: 500px;
+          padding: 0 1rem;
+        }
+
+    .custom-rich-text__title {
+      font-family: "Joti One", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+  .custom-rich-text__contentwrapper {
+    max-width: 495px;
+    text-align: center;
+    font-size: 24px !important;
+    color: #515151;
+    height: auto;
+  }
+
+  .custom-rich-text__content p {
+    margin: 0;
+    text-wrap: wrap;
+  }
+
+  .custom-rich-text__button button {
+    border: 1px solid black;
+    padding: 1.5rem 3rem;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .custom-rich-text__button button:hover {
+    background-color: black;
+    color: white;
+  }
+
+            .custom-rich-textwrapper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image: url("{{ background-image | img_url: 'master' }}");
+            background-size: cover;
+            background-position: center;
+            background-color: {{ section.settings.bg-color }};
+              gap: 2rem;
+          }
+
+      @media screen and (max-width: 768px) {
+          .custom-rich-text__inner {
+            padding: 0 1rem;
+          }
+
+          .custom-rich-text__contentwrapper  {
+            font-size: 16px !important;
+            padding: 0 1rem;
+          }
+
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 990px) {
+          .custom-rich-text__inner {
+            padding: 0 18px;
+          }
+        }
+{% endstyle %}
+
+<script>
+   document.addEventListener("scroll", function() {
+      var pageTop = window.pageYOffset;
+      var pageBottom = pageTop + window.innerHeight;
+      var tag = document.querySelector(".custom-rich-text__inner");
+
+      if (tag.offsetTop < pageBottom) {
+          tag.classList.add("fade-in-image");
+      }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Rich Text",
+  "tag": "section",
+  "settings": [{
+    "type": "image_picker",
+    "id": "bg-image",
+    "label": "Background Image"
+  },{
+    "type": "color",
+    "id": "bg-color",
+    "label": "Background Color",
+    "default": "#c2bebf"
+  },
+  {
+    "type": "inline_richtext",
+    "id": "brand-name",
+    "label": "Brand Name"
+  },
+  {
+    "type": "richtext",
+    "id": "richtext-content",
+    "label": "Rich Text Content"
+  }],
+  "presets": [{
+    "name": "Custom Rich Text"
+  }]
+}
+{% endschema %}
