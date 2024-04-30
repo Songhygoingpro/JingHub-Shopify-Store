@@ -196,7 +196,6 @@
 
   function initializeSwiper() {
       if (window.innerWidth <= 768) {
-          // Create Swiper instance if the window width is less than or equal to 768 pixels
           if (secondSwiper === null) {
               secondSwiper = new Swiper(".mySwiper-second", {
                   slidesPerView: 1.2,
@@ -229,13 +228,21 @@
   initializeSwiper();
 
 
+    window.addEventListener('resize', function() {
+        initializeSwiper(); // Call the function when the window is resized
+    });
 
-       let custom_customer_care = document.querySelectorAll('.custom-customer-care__iconwrapper');
+    // Call the function initially to check the initial window width
+    initializeSwiper();
 
-      custom_customer_care.forEach(function(element, index) {
-        let delay = index * 100; // Calculate delay based on index
-        element.setAttribute('data-aos-delay', delay); // Set the data-aos-delay attribute
-      });
+
+
+         let custom_customer_care = document.querySelectorAll('.custom-customer-care__iconwrapper');
+
+        custom_customer_care.forEach(function(element, index) {
+          let delay = index * 100; // Calculate delay based on index
+          element.setAttribute('data-aos-delay', delay); // Set the data-aos-delay attribute
+        });
 </script>
 
 {% schema %}
