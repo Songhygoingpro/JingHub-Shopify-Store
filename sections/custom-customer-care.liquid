@@ -212,7 +212,12 @@
               });
           }
       } else {
-         if (paginationElements !== null) {
+          // Destroy Swiper instance if the window width is greater than 768 pixels
+          if (secondSwiper !== null) {
+              secondSwiper.destroy();
+              secondSwiper = null;
+          }
+        if (paginationElements !== null) {
                 paginationElements.forEach(paginationElement => {
                     paginationElement.remove();
                 });
