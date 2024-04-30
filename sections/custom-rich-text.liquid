@@ -1,7 +1,13 @@
 {% assign background-image = section.settings['bg-image'] %}
 
 <div class="custom-rich-text ">
-  <div class="custom-rich-text__inner ">
+  <div
+    class="custom-rich-text__inner "
+    data-aos="fade-zoom-in"
+    data-aos-easing="ease-in-back"
+    data-aos-delay="300"
+    data-aos-offset="0"
+  >
     <div class="custom-rich-textwrapper">
       <h1 class="custom-rich-text__title" data-aos="fade-up">
         {{ section.settings['brand-name'] }}
@@ -94,17 +100,7 @@
         }
 {% endstyle %}
 
-<script>
-   document.addEventListener("scroll", function() {
-      var pageTop = window.pageYOffset;
-      var pageBottom = pageTop + window.innerHeight;
-      var tag = document.querySelector(".custom-rich-text__inner");
-
-      if (tag.offsetTop < pageBottom) {
-          tag.classList.add("fade-in-image");
-      }
-  });
-</script>
+<script></script>
 
 {% schema %}
 {
