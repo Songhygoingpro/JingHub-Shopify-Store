@@ -166,10 +166,6 @@
     font-size: 16px;
   }
 
-   /* .mySwiper-second .swiper-pagination {
-     margin-bottom: 2rem;
-   } */
-
   .custom-customer-care__iconwrapper svg {
                width: 32px;
                height: 32px;
@@ -211,6 +207,13 @@
           },
       });
   }
+
+   let elementss = document.querySelectorAll('.custom-customer-care__iconwrapper');
+
+  elementss.forEach(function(element, index) {
+    let delay = index * 100; // Calculate delay based on index
+    element.setAttribute('data-aos-delay', delay); // Set the data-aos-delay attribute
+  });
 </script>
 
 {% schema %}
