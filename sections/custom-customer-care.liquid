@@ -1,8 +1,8 @@
 <div class="swiper mySwiper-second">
   <div class="swiper-wrapper">
     {% for block in section.blocks %}
-      <li class="custom-customer-care__item swiper-slide">
-        <div class="custom-customer-care__iconwrapper " data-aos="fade-up">
+      <li class="custom-customer-care__item swiper-slide" data-aos="fade-up">
+        <div class="custom-customer-care__iconwrapper ">
           {% if block.settings['svg-exist'] == 'delivery' %}
             <svg
               fill="{% if block.settings.icon-color %}  {{ block.settings.icon-color }}  {% else %} #000000{% endif %}"
@@ -208,7 +208,7 @@
       });
   }
 
-   let custom-customer-care = document.querySelectorAll('.custom-customer-care__iconwrapper');
+   let custom-customer-care = document.querySelectorAll('.custom-customer-care__item');
 
   custom-customer-care.forEach(function(element, index) {
     let delay = index * 100; // Calculate delay based on index
