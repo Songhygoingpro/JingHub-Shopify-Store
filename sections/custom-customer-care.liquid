@@ -192,11 +192,10 @@
 </style>
 
 <script>
-   var secondSwiper = null; // Declare a variable to hold the Swiper instance
+   var secondSwiper = null;
 
   function initializeSwiper() {
       if (window.innerWidth <= 768) {
-          // Create Swiper instance if the window width is less than or equal to 768 pixels
           secondSwiper = new Swiper(".mySwiper-second", {
               slidesPerView: 1.2,
               centeredSlides: true,
@@ -211,7 +210,6 @@
               },
           });
       } else {
-          // Destroy Swiper instance if the window width is greater than 768 pixels
           if (secondSwiper !== null) {
               secondSwiper.destroy();
               secondSwiper = null;
