@@ -192,49 +192,50 @@
 </style>
 
 <script>
-    var secondSwiper = null;
+      var secondSwiper = null;
 
-    function initializeSwiper() {
-        if (window.innerWidth <= 768) {
-            if (secondSwiper === null) {
-                secondSwiper = new Swiper(".mySwiper-second", {
-                    slidesPerView: 1.2,
-                    centeredSlides: true,
-                    spaceBetween: 10,
-                  pagination: {
-                        el: ".swiper-pagination",
-                        clickable: true
-                    },
-                    navigation: {
-                        nextEl: ".swiper-button-next",
-                        prevEl: ".swiper-button-prev",
-                    },
-                });
-            }
-        } else {
-                secondSwiper.destroy();
-                secondSwiper = null;
-  var paginationBullets = document.querySelectorAll('.mySwiper-second .swiper-pagination .swiper-pagination-bullet');
+      function initializeSwiper() {
+          if (window.innerWidth <= 768) {
+              if (secondSwiper === null) {
+                  secondSwiper = new Swiper(".mySwiper-second", {
+                      slidesPerView: 1.2,
+                      centeredSlides: true,
+                      spaceBetween: 10,
+                    pagination: {
+                          el: ".swiper-pagination",
+                          clickable: true
+                      },
+                      navigation: {
+                          nextEl: ".swiper-button-next",
+                          prevEl: ".swiper-button-prev",
+                      },
+                  });
+              }
+          } else {
+            if(secondSwiper != null){
+                  secondSwiper.destroy();
+                  secondSwiper = null;
+    var paginationBullets = document.querySelectorAll('.mySwiper-second .swiper-pagination .swiper-pagination-bullet');
 
-  // Loop through each pagination bullet and hide it
-  paginationBullets.forEach(function(bullet) {
-      bullet.style.display = 'none';
-  });
-
-        }
-    }
-
-    window.addEventListener('resize', function() {
-        initializeSwiper();
+    // Loop through each pagination bullet and hide it
+    paginationBullets.forEach(function(bullet) {
+        bullet.style.display = 'none';
     });
-    initializeSwiper();
+  }
+          }
+      }
 
-           let custom_customer_care = document.querySelectorAll('.custom-customer-care__iconwrapper');
+      window.addEventListener('resize', function() {
+          initializeSwiper();
+      });
+      initializeSwiper();
 
-          custom_customer_care.forEach(function(element, index) {
-            let delay = index * 100; // Calculate delay based on index
-            element.setAttribute('data-aos-delay', delay); // Set the data-aos-delay attribute
-          });
+             let custom_customer_care = document.querySelectorAll('.custom-customer-care__iconwrapper');
+
+            custom_customer_care.forEach(function(element, index) {
+              let delay = index * 100; // Calculate delay based on index
+              element.setAttribute('data-aos-delay', delay); // Set the data-aos-delay attribute
+            });
 </script>
 
 {% schema %}
