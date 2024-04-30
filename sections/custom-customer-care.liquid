@@ -1,7 +1,7 @@
 <div class="swiper mySwiper-second">
   <div class="swiper-wrapper inner">
     {% for block in section.blocks %}
-      <li class="custom-customer-care__item swiper-slide">
+      <div class="custom-customer-care__item swiper-slide">
         <div class="custom-customer-care__iconwrapper" data-aos="fade-up">
           {% if block.settings['svg-exist'] == 'delivery' %}
             <svg
@@ -146,7 +146,7 @@
           <h3 class="custom-customer-care__heading">{{ block.settings.heading }}</h3>
           <p class="custom-customer-care__content">{{ block.settings.content }}</p>
         </div>
-      </li>
+      </div>
     {% endfor %}
   </div>
   <!--
