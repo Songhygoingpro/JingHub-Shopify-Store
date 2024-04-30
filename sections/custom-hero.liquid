@@ -1,7 +1,13 @@
 <div class="swiper mySwiper">
   <div class="swiper-wrapper">
     {% for block in section.blocks %}
-      <div class="swiper-slide " data-aos="fade-zoom-in">
+      <div
+        class="swiper-slide "
+        data-aos="fade-zoom-in"
+        data-aos-easing="ease-in-back"
+        data-aos-delay="300"
+        data-aos-offset="0"
+      >
         <a href="{{ block.settings.link }}">
           <img
             src="{% if block.settings['file-image'] %}{{ block.settings.file-image | img_url: 'large' }}{% else %}{{ block.settings.url-image }}{% endif %}"
