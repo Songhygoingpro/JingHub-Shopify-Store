@@ -2,7 +2,7 @@
   <div class="swiper-wrapper">
     {% for block in section.blocks %}
       <li class="custom-customer-care__item swiper-slide" data-aos="fade-up">
-        <div class="custom-customer-care__iconwrapper ">
+        <div class="custom-customer-care__iconwrapper">
           {% if block.settings['svg-exist'] == 'delivery' %}
             <svg
               fill="{% if block.settings.icon-color %}  {{ block.settings.icon-color }}  {% else %} #000000{% endif %}"
@@ -211,7 +211,7 @@
    let custom-customer-care = document.querySelectorAll('.custom-customer-care__item');
 
   custom-customer-care.forEach(function(element, index) {
-    let delay = index * 500; // Calculate delay based on index
+    let delay = index * 100; // Calculate delay based on index
     element.setAttribute('data-aos-delay', delay); // Set the data-aos-delay attribute
   });
 </script>
