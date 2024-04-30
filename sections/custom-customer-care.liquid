@@ -192,7 +192,7 @@
 </style>
 
 <script>
-  var secondSwiper = null; // Declare a variable to hold the Swiper instance
+  var secondSwiper = null;
 
   function initializeSwiper() {
       if (window.innerWidth <= 768) {
@@ -212,29 +212,16 @@
               });
           }
       } else {
-
               secondSwiper.destroy();
               secondSwiper = null;
-
+        document.querySelectorAll('.mySwiper-second .swiper-pagination-bullet').style.display = 'none';
       }
   }
 
   window.addEventListener('resize', function() {
-      initializeSwiper(); // Call the function when the window is resized
+      initializeSwiper();
   });
-
-  // Call the function initially to check the initial window width
   initializeSwiper();
-
-
-    window.addEventListener('resize', function() {
-        initializeSwiper(); // Call the function when the window is resized
-    });
-
-    // Call the function initially to check the initial window width
-    initializeSwiper();
-
-
 
          let custom_customer_care = document.querySelectorAll('.custom-customer-care__iconwrapper');
 
