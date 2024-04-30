@@ -216,7 +216,8 @@
           if (secondSwiper !== null) {
               secondSwiper.destroy();
               secondSwiper = null;
-              document.querySelector('.swiper-pagination span').style = "display: hidden";
+             const paginationElement = document.querySelector(".swiper-pagination");
+            paginationElement.innerHTML = '';
           }
       }
   }
